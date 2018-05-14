@@ -1,4 +1,3 @@
-        !to "asc2ulpet.ct", plain	; no load address
         * = 0        	; pc = table index
         ; first create "as-is" table
         !for i, 0, 255 {!byte i}
