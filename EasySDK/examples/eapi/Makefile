@@ -3,8 +3,10 @@ all: test_crt.crt test_disk.d64
 test_crt.crt: test_crt.bin
 	../../tools/bin2efcrt $< $@
 
-test_crt.bin: test_crt.s asc2ulpet.s
-        acme asc2ulpet.s
+test_crt.bin: test_crt.s asc2ulpet.ct
+	acme -o $@ $<
+
+asc2ulpet.ct: asc2ulpet.s
 	acme -o $@ $<
 
 test_disk.d64: test_disk.bin
@@ -14,4 +16,4 @@ test_disk.bin: test_disk.s
 	acme -o $@ $<
 
 clean:
-	rm -f test_crt.bin test_crt.crt test_disk.bin test_disk.d64
+	rm -f asc2ulpet.ct test_crt.bin test_crt.crt test_disk.bin test_disk.d64
