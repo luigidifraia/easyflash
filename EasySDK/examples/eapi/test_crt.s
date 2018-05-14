@@ -126,9 +126,6 @@ teNext:
             ; set 1st bank of 64k sector
             jsr EAPISetBank
 
-            tax             ; Save a
-
-            lda #0
             ldy #$80        ; point to $8000, 1st byte of LOROM bank
             jsr EAPIEraseSector
             bcs eraseError
@@ -138,7 +135,6 @@ teNext:
             bcs eraseError
 
             ; 8k * 8 = 64k => Step 8
-            txa             ; Restore a
             clc
             adc #8
             cmp #64         ; we have bank 0..63 => stop at 64
