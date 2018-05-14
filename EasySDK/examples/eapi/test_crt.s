@@ -331,7 +331,7 @@ easyAPI:
 
 	; Insert a default name for the menu entry
         !convtab "asc2ulpet.ct"
-        !text "EF-Name:EasyAPI Example"
+        !text "EF-Name:EasyAPI-Example"
         !align $ffff, $e000 + $1b18, $00
 
         ; fill it up to $FFFA to put the vectors there
