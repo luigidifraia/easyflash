@@ -9,5 +9,5 @@ Thomas ’skoe’ Giesel's EasySDK with EasyAPI usage examples, including embedd
 ## Fixes
 - The EAPI test example was adjusted to work with version 1.4 of the API.
 
-## Reference code
+## Official SDK reference code
 Thomas' EasyFlash code repository is accessible [here](https://bitbucket.org/skoe/easyflash).
