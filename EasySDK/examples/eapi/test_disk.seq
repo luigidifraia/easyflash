@@ -1,0 +1,5 @@
+format eapitest,01 d64 test_disk.d64 8
+attach test_disk.d64 8
+write test_disk.bin eapitest
+write ../../eapi/out/eapi-am29f040-14 eapi-am29f040-14
+exit
