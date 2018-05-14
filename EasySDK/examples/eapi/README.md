@@ -12,5 +12,4 @@ To test the cartridge in a *recent* version of [VICE Emulator](http://vice-emu.s
 
 ## Disk image
 
-If you make the cartridge invisible at start-up, you can load the first program from the disk image to use EasyAPI.\
-Bear in mind that the test program is desctructive: it erases all flash sectors and then writes to all blocks without exclusions.
+If you make the cartridge invisible at start-up, you can load the first program from the disk image to use EasyAPI.

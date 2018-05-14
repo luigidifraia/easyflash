@@ -84,7 +84,7 @@ testCheckEasyFlash:
         ; and number of physical banks or slots
         sty $0401
 
-        jmp testErase
+        jmp testRead
 
 
 cefNotCompatible:
@@ -94,7 +94,33 @@ cefNotCompatible:
 
 ; =============================================================================
 ;
-; Erase all sectors, one by one
+; Read from those banks that were filled with sample data when provisioned
+;
+; =============================================================================
+testRead:
+        ; Switch to bank 1, get a byte from LOROM and HIROM
+        lda #1
+        jsr EAPISetBank
+        lda $8000
+        ldx $a000
+        ; and put them to the screen, we should see "A" and "B" there
+        sta $0400 + 2
+        stx $0400 + 3
+
+        ; Switch to bank 2, get a byte from LOROM and HIROM
+        lda #2
+        jsr EAPISetBank
+        lda $8000
+        ldx $a000
+        ; and put them to the screen, we should see "C" and "D" there
+        sta $0400 + 4
+        stx $0400 + 5
+
+        jmp testErase
+
+; =============================================================================
+;
+; Erase all sectors but the first, one by one
 ;
 ; =============================================================================
 eraseError:
@@ -104,7 +130,7 @@ eraseError:
 
 
 testErase:
-        lda #0
+        lda #8          ; Starting from 2nd sector
 teNext:
         ; set 1st bank of 64k sector
         jsr EAPISetBank
@@ -143,7 +169,7 @@ teCheckEmpty:
 ; =============================================================================
 
 testWrite:
-        ldx #0
+        ldx #8
 twNext:
         txa             ; bank in a
         jsr EAPISetBank
@@ -183,10 +209,10 @@ twCheck:
 ; =============================================================================
 
 testWriteError:
-        lda #0          ; bank in a
+        lda #8          ; bank in a
         jsr EAPISetBank
 
-        ; there's a 0 at $8000 now, we'll try to write 255
+        ; there's a 8 at $8000 now, we'll try to write 255
         lda #$ff
         ldx #0
         ldy #$80
