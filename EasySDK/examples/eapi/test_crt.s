@@ -206,11 +206,11 @@ twCheck:
 ; =============================================================================
 
 testWriteError:
-            ldx #0          ; low byte of bank in x
+            ldx #8          ; low byte of bank in x
             ldy #0          ; high byte of bank, always 0
             jsr EAPISetBank
 
-            ; there's a 0 at $8000 now, we'll try to write 255
+            ; there's a 8 at $8000 now, we'll try to write 255
             ldx #0
             ldy #$80
             lda #$ff
