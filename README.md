@@ -1,2 +1,2 @@
-# easyflash
-Thomas ’skoe’ Giesel's EasySDK with EASYAPI examples
+# EasyFlash
+Thomas ’skoe’ Giesel's EasySDK with EasyAPI examples.
