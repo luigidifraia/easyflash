@@ -125,10 +125,11 @@ testErase:
             lda #8          ; Starting from 2nd sector
 teNext:
             ; set 1st bank of 64k sector
-            tax             ; low byte of bank in x
-            ldy #0          ; high byte of bank, always 0
             jsr EAPISetBank
 
+            tax             ; Save a
+
+            lda #0
             ldy #$80        ; point to $8000, 1st byte of LOROM bank
             jsr EAPIEraseSector
             bcs eraseError
@@ -138,16 +139,16 @@ teNext:
             bcs eraseError
 
             ; 8k * 8 = 64k => Step 8
+            txa             ; Restore a
             clc
             adc #8
             cmp #64         ; we have bank 0..63 => stop at 64
             bne teNext
 
             ; put first byte of each bank onto screen
-            lda #0
-            tay
-            tax
+            ldx #0
 teCheckEmpty:
+            txa
             jsr EAPISetBank
             lda $8000
             sta $0400 + 40,x
@@ -164,13 +165,12 @@ teCheckEmpty:
 ; =============================================================================
 
 testWrite:
-            ldx #8          ; low byte of bank in x
+            ldx #8
 twNext:
-            ldy #0          ; high byte of bank, always 0
+            txa             ; bank in a
             jsr EAPISetBank
 
             ; bank is in a = value to write
-            txa
             ldx #0
             ldy #$80        ; point to $8000, 1st byte of LOROM bank
             jsr EAPIWriteFlash
@@ -186,10 +186,9 @@ twNext:
             bne twNext
 
             ; put first byte of each bank onto screen
-            lda #0
-            tay
-            tax
+            ldx #0
 twCheck:
+            txa
             jsr EAPISetBank
             lda $8000
             sta $0400 + 200,x
@@ -206,14 +205,13 @@ twCheck:
 ; =============================================================================
 
 testWriteError:
-            ldx #8          ; low byte of bank in x
-            ldy #0          ; high byte of bank, always 0
+            lda #8          ; bank in a
             jsr EAPISetBank
 
             ; there's a 8 at $8000 now, we'll try to write 255
+            lda #$ff
             ldx #0
             ldy #$80
-            lda #$ff
             jsr EAPIWriteFlash
             ; 10d7
             bcc writeErrorMissing
