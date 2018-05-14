@@ -13,4 +13,4 @@ test_disk.bin: test_disk.s
 	acme -o $@ $<
 
 clean:
-	rm -f test_crt.bin test_crt.crt test_disk.bin test_disk.exo test_disk.d64
+	rm -f test_crt.bin test_crt.crt test_disk.bin test_disk.d64
