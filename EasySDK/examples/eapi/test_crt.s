@@ -4,7 +4,6 @@
 
 * = $0000
 
-EASYFLASH_BANK    = $DE00
 EASYFLASH_CONTROL = $DE02
 EASYFLASH_LED     = $80
 EASYFLASH_16K     = $07
@@ -92,7 +91,7 @@ cefNotCompatible:
 testRead:
             ; Switch to bank 1, get a byte from LOROM and HIROM
             lda #1
-            sta EASYFLASH_BANK
+            jsr EAPISetBank
             lda $8000
             ldx $a000
             ; and put them to the screen, we should see "A" and "B" there
@@ -101,7 +100,7 @@ testRead:
 
             ; Switch to bank 2, get a byte from LOROM and HIROM
             lda #2
-            sta EASYFLASH_BANK
+            jsr EAPISetBank
             lda $8000
             ldx $a000
             ; and put them to the screen, we should see "C" and "D" there
