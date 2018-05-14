@@ -3,7 +3,8 @@ all: test_crt.crt test_disk.d64
 test_crt.crt: test_crt.bin
 	../../tools/bin2efcrt $< $@
 
-test_crt.bin: test_crt.s
+test_crt.bin: test_crt.s asc2ulpet.s
+        acme asc2ulpet.s
 	acme -o $@ $<
 
 test_disk.d64: test_disk.bin

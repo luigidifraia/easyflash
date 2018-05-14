@@ -329,6 +329,11 @@ easyAPI:
         ; Insert EAPI binary from file offset 2
         !binary "../../eapi/out/eapi-am29f040-14", $0300, 2
 
+	; Insert a default name for the menu entry
+        !convtab "asc2ulpet.ct"
+        !text "EF-Name:EasyAPI Example"
+        !align $ffff, $e000 + $1b18, $00
+
         ; fill it up to $FFFA to put the vectors there
         !align $ffff, $fffa, $ff
 
