@@ -49,7 +49,7 @@ driveSet:
 
         jmp testCheckEasyFlash
 
-loadError
+loadError:
         sta $0400
         lda #2
         sta $d020
@@ -222,7 +222,7 @@ testWriteError:
         ; 10d7
         bcc writeErrorMissing
 
-everythingOK
+everythingOK:
         dec $d020
         jmp everythingOK
 

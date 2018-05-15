@@ -213,7 +213,7 @@ testWriteError:
             ; 10d7
             bcc writeErrorMissing
 
-everythingOK
+everythingOK:
             dec $d020
             jmp everythingOK
 
