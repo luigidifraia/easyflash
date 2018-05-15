@@ -147,7 +147,7 @@ teNext:
         bcs eraseError
 
         ; 8k * 8 = 64k => Step 8
-        clc
+        ;clc
         adc #8
         cmp #64         ; we have bank 8..63 => stop at 64
         bne teNext
