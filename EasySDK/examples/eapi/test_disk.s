@@ -146,7 +146,7 @@ teNext:
         ; 8k * 8 = 64k => Step 8
         clc
         adc #8
-        cmp #64         ; we have bank 0..63 => stop at 64
+        cmp #64         ; we have bank 8..63 => stop at 64
         bne teNext
 
         ; put first byte of each bank onto screen
@@ -164,14 +164,13 @@ teCheckEmpty:
 
 ; =============================================================================
 ;
-; Write the bank number to the first byte of each bank
+; Write the bank number to the first byte of each bank, starting from bank 8
 ;
 ; =============================================================================
 
 testWrite:
-        ldx #8
+        lda #8          ; bank in a
 twNext:
-        txa             ; bank in a
         jsr EAPISetBank
 
         ; bank is in a = value to write
@@ -184,9 +183,9 @@ twNext:
         jsr EAPIWriteFlash
         bcs writeError
 
-        tax
-        inx
-        cpx #64         ; we have bank 0..63 => stop at 64
+        ;clc
+        adc #1
+        cmp #64         ; we have bank 8..63 => stop at 64
         bne twNext
 
         ; put first byte of each bank onto screen
