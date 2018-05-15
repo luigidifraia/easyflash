@@ -69,6 +69,7 @@ fileNameEnd:
 ; Check if the driver supports this EasyFlash (if any)
 ;
 ; =============================================================================
+
 testCheckEasyFlash:
         ; this pointer is used by EAPI to find out where it is
         lda #<EAPIBase
@@ -97,6 +98,7 @@ cefNotCompatible:
 ; Read from those banks that were filled with sample data when provisioned
 ;
 ; =============================================================================
+
 testRead:
         ; Switch to bank 1, get a byte from LOROM and HIROM
         lda #1
@@ -123,6 +125,7 @@ testRead:
 ; Erase all sectors but the first, one by one
 ;
 ; =============================================================================
+
 eraseError:
         lda #7
         sta $d020
