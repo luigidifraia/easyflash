@@ -257,7 +257,7 @@ startWait:
         bne startWait
 
         ; copy the final start-up code to RAM (bottom of CPU stack)
-        ldx #(startUpEnd - startUpCode)
+        ldx #(startUpEnd - startUpCode - 1)
 l1:
         lda startUpCode, x
         sta $0100, x
