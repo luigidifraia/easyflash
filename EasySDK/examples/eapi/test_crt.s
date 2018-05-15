@@ -23,7 +23,7 @@ EAPI_ZP_REAL_CODE_BASE = $4b        ; 2 bytes
 ; 00:0:0000 (LOROM, bank 0)
 bankStart_00_0:
     ; This code resides on LOROM, it becomes visible at $8000
-    ; The EAPI becomes visible at $B800..$BBFF as this code runs in 16K mode
+    ; The EAPI becomes visible at $B800..$BAFF as this code runs in 16K mode
 
     !pseudopc $8000 {
 
