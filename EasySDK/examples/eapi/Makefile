@@ -1,7 +1,7 @@
 all: test_crt.crt test_disk.d64
 
 test_crt.crt: test_crt.bin
-	../../tools/bin2efcrt $< $@
+	bin2efcrt $< $@
 
 test_crt.bin: test_crt.s asc2ulpet.ct
 	acme -o $@ $<
