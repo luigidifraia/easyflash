@@ -1,0 +1,9 @@
+# Assembled files
+*.prg
+*.ct
+
+# Binary files
+*.bin
+
+# Cartridge files
+*.crt
